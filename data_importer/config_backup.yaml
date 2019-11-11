@@ -1,0 +1,1889 @@
+# Location of registers and caches
+writableDir: 'C:\Users\C61931\Documents\Projects\keras_playground\data_importer\caches'
+# Intermediate folder
+intermediateFolder: '{0}\intermediate'
+# Interest rate calibration algorithm
+interestRateCalibrationAlgorithm: 'moments'
+# Fx rate calibration algorithm
+fxRateCalibrationAlgorithm: 'moments'
+# vol calibration algorithm
+volCalibrationAlgorithm: 'kalman'
+#correlation healing type
+corrHealType: 'Adjusted_cov' #Yes/No
+# keep cache
+keepCache: 'True'
+# data source 0
+dataSource0: '\\solon.prd\Files\P\Global\WGD\Dep 255242-Counterparty Exposure Modelling\Data\OfficialDataFromPVS'
+# The location of the historical interest rate files
+sourceDirIR: '{0}\zero.YYYYMMDD.EMEA\'
+# The name pattern for the interest rate files.
+# Each file name begins with 'zero.' followed by 8 digits of date (yyyymmdd) and ends with '.EMEA'
+namePatternIR: 'zero\.([0-9]{8})\.EMEA'
+# The location of the historical interest rate files
+sourceDirIR: '{0}\zero.YYYYMMDD.EMEA\'
+# The name pattern for the interest rate files.
+# Each file name begins with 'zero.' followed by 8 digits of date (yyyymmdd) and ends with '.EMEA'
+namePatternIR: 'zero\.([0-9]{8})\.EMEA'
+# The location of the historical commodity rate files
+sourceDirCom: '{0}\oil.YYYYMMDD.EMEA\'
+# The name pattern for the commodity rate files.
+# Each file name begins with 'zero.' followed by 8 digits of date (yyyymmdd) and ends with '.EMEA'
+namePatternCom: 'oil\.([0-9]{8})\.EMEA'
+# The location of the historical exchange rate files
+sourceDirFX: '{0}\fx.YYYYMMDD.EMEA\'
+# The location of the historical exchange rate files metals
+sourceDirFXMetal: '{0}\fxmetal.USD.YYYYMMDD.EMEA\'
+# The name pattern for the exchange rate files.
+# Each file name begins with 'fx.' followed by 8 digits of date (yyyymmdd) and ends with '.EMEA'
+namePatternFX: 'fx\.([0-9]{8})\.EMEA'
+# The name pattern for the exchange rate files metals.
+# Each file name begins with 'fxmetal.' followed by 8 digits of date (yyyymmdd) and ends with '.EMEA'
+namePatternFXMetal: 'fxmetal\.USD\.([0-9]{8})\.EMEA'
+# Trading mandae
+mandate:
+    -
+      type: InterestRate
+      historyLength: 3000
+      minHistoryLength: 500
+      tenors: all
+      maturities: na
+      strikes: na
+      calibrationTenors: tenors
+      calibrationMaturities: na
+      calibrationStrikes: na
+    -
+      type: FX
+      historyLength: 3000
+      minHistoryLength: 500
+      tenors: na
+      maturities: na
+      strikes: na
+      calibrationTenors: na
+      calibrationMaturities: na
+      calibrationStrikes: na
+    -
+      type: InterestRateVol
+      historyLength: 3000
+      minHistoryLength: 500
+      tenors: 1M, 3M, 6M
+      maturities: 1M - 360M
+      strikes: -0.05 - 0.05
+      calibrationTenors: tenors
+      calibrationMaturities: 1M, 3M, 6M, 12M, 24M, 36M, 48M, 60M, 72M, 84M, 96M, 108M, 120M, 180M, 240M, 300M, 360M
+      calibrationStrikes: -0.05:0.05:0.01
+    -
+      type: InterestYieldVol
+      historyLength: 3000
+      minHistoryLength: 500
+      tenors: all
+      maturities: 1M - 360M
+      strikes: -0.05 - 0.05
+      calibrationTenors: 12M, 24M, 36M, 48M, 60M, 120M, 180M, 240M, 360M, 480M, 600M
+      calibrationMaturities: 1M, 3M, 6M, 12M, 24M, 36M, 48M, 60M, 72M, 84M, 96M, 108M, 120M, 180M, 240M, 300M, 360M
+      calibrationStrikes: -0.05:0.05:0.01
+    -
+      type: FXVol
+      historyLength: 3000
+      minHistoryLength: 500
+      tenors: na
+      maturities: 1D - 120M
+      strikes: na
+      calibrationTenors: na
+      calibrationMaturities: 1D, 5D, 10D, 21D, 42D, 63D, 126D, 252D, 504D, 1260D, 2520D
+      calibrationStrikes: 0.8:1.2:0.1
+    -
+      type: Commodity
+      historyLength: 3000
+      minHistoryLength: 500
+      tenors: all
+      maturities: na
+      strikes: na
+      calibrationTenors: 1M:60M:1M
+      calibrationMaturities: na
+      calibrationStrikes: na
+    -
+      type: CommodityVol
+      historyLength: 3000
+      minHistoryLength: 500
+      tenors: na
+      maturities: 1M - 5Y
+      strikes: -0.5 - 0.05
+      calibrationTenors: na
+      calibrationMaturities: 1M:60M:1M
+      calibrationStrikes: 0.8:1.2:0.1
+
+#EXCEPTIONS (put in brackets to what instance it applies)
+    -
+      type: InterestRateVol/(CHF)
+      historyLength: 3000
+      minHistoryLength: 500
+      tenors: 1M, 3M, 6M
+      maturities: 1M - 5Y
+      strikes: -0.05 - 0.05
+      calibrationTenors: tenors
+      calibrationMaturities: 1M, 3M, 6M, 12M, 24M, 36M, 48M, 60M, 72M, 84M, 96M, 108M, 120M, 180M, 240M, 300M, 360M
+      calibrationStrikes: -0.05:0.05:0.01
+    -
+      type: InterestYieldVol/(CHF)
+      historyLength: 3000
+      minHistoryLength: 500
+      tenors: all
+      maturities: 1M - 5Y
+      strikes: -0.05 - 0.05
+      calibrationTenors: 12M, 24M, 36M, 48M, 60M, 120M, 180M, 240M, 360M, 480M, 600M
+      calibrationMaturities: 1M, 3M, 6M, 12M, 24M, 36M, 48M, 60M, 72M, 84M, 96M, 108M, 120M, 180M, 240M, 300M, 360M
+      calibrationStrikes: -0.05:0.05:0.01
+
+# More exceptions may follow
+
+# The description of source files for historical implied volatility data.
+sourceImpVol:
+    -
+        name: InterestRateVol
+        currencies:
+                   -
+                      currency: EUR
+                      sources:
+                              -
+                                 sourceID: 'SD'
+                                 dir: '{0}\impVol\ir.rate.volatilities\SD\EUR'
+                                 pattern: 'IR_Caplet_Surface*.csv'
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.rate.volatilities\ICAP\EUR'
+                                 patternATM: 'IRD_VOLS_DISPL_CF_EUR_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_CF_EUR_SABR*.csv'
+
+                   -
+                      currency: USD
+                      sources:
+                              -
+                                 sourceID: 'SD'
+                                 dir: '{0}\impVol\ir.rate.volatilities\SD\USD'
+                                 pattern: 'IR_Caplet_Surface*.csv'
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.rate.volatilities\ICAP\USD'
+                                 patternATM: 'IRD_VOLS_DISPL_CF_USD_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_CF_USD_SABR*.csv'
+                   -
+                      currency: GBP
+                      sources:
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.rate.volatilities\ICAP\GBP'
+                                 patternATM: 'IRD_VOLS_DISPL_CF_GBP_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_CF_GBP_SABR*.csv'
+                   -
+                      currency: CHF
+                      sources:
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.rate.volatilities\ICAP\CHF'
+                                 patternATM: 'IRD_VOLS_DISPL_CF_CHF_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_CF_CHF_SABR*.csv'
+                   -
+                      currency: DKK
+                      sources:
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.rate.volatilities\ICAP\DKK'
+                                 patternATM: 'IRD_VOLS_DISPL_CF_DKK_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_CF_DKK_SABR*.csv'
+                   -
+                      currency: JPY
+                      sources:
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.rate.volatilities\ICAP\JPY'
+                                 patternATM: 'IRD_VOLS_DISPL_CF_JPY_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_CF_JPY_SABR*.csv'
+                   -
+                      currency: NOK
+                      sources:
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.rate.volatilities\ICAP\NOK'
+                                 patternATM: 'IRD_VOLS_DISPL_CF_NOK_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_CF_NOK_SABR*.csv'
+                   -
+                      currency: SEK
+                      sources:
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.rate.volatilities\ICAP\SEK'
+                                 patternATM: 'IRD_VOLS_DISPL_CF_SEK_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_CF_SEK_SABR*.csv'
+    -
+        name: InterestYieldVol
+        currencies:
+                   -
+                      currency: EUR
+                      sources:
+                              -
+                                 sourceID: 'SD'
+                                 dir: '{0}\impVol\ir.yield.volatilities\SD\EUR'
+                                 pattern: 'IR_Volatility_Swaption*.csv'
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.yield.volatilities\ICAP\EUR'
+                                 patternATM: 'IRD_VOLS_DISPL_SWPT_EUR_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_SWPT_EUR_SABR*.csv'
+                   -
+                      currency: USD
+                      sources:
+                              -
+                                 sourceID: 'SD'
+                                 dir: '{0}\impVol\ir.yield.volatilities\SD\USD'
+                                 pattern: 'IR_Volatility_Swaption*.csv'
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.yield.volatilities\ICAP\USD'
+                                 patternATM: 'IRD_VOLS_DISPL_SWPT_USD_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_SWPT_USD_SABR*.csv'
+                   -
+                      currency: GBP
+                      sources:
+                              -
+                                 sourceID: 'SD'
+                                 dir: '{0}\impVol\ir.yield.volatilities\SD\GBP'
+                                 pattern: 'IR_Volatility_Swaption*.csv'
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.yield.volatilities\ICAP\GBP'
+                                 patternATM: 'IRD_VOLS_DISPL_SWPT_GBP_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_SWPT_GBP_SABR*.csv'
+                   -
+                      currency: CHF
+                      sources:
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.yield.volatilities\ICAP\CHF'
+                                 patternATM: 'IRD_VOLS_DISPL_SWPT_CHF_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_SWPT_CHF_SABR*.csv'
+                   -
+                      currency: DKK
+                      sources:
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.yield.volatilities\ICAP\DKK'
+                                 patternATM: 'IRD_VOLS_DISPL_SWPT_DKK_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_SWPT_DKK_SABR*.csv'
+                   -
+                      currency: JPY
+                      sources:
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.yield.volatilities\ICAP\JPY'
+                                 patternATM: 'IRD_VOLS_DISPL_SWPT_JPY_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_SWPT_JPY_SABR*.csv'
+                   -
+                      currency: NOK
+                      sources:
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.yield.volatilities\ICAP\NOK'
+                                 patternATM: 'IRD_VOLS_DISPL_SWPT_NOK_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_SWPT_NOK_SABR*.csv'
+                   -
+                      currency: SEK
+                      sources:
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.yield.volatilities\ICAP\SEK'
+                                 patternATM: 'IRD_VOLS_DISPL_SWPT_SEK_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_SWPT_SEK_SABR*.csv'
+    -
+        name: FXVol
+        currencyPairs:
+                   -
+                      currencyPair: AUD.JPY
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: AUD.EUR
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: AUD.USD
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: CAD.EUR
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: CAD.USD
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: CHF.EUR
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: CHF.NOK
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: CHF.USD
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: CNH.EUR
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: CNH.USD
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: EUR.GBP
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: EUR.JPY
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: EUR.NOK
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: EUR.SEK
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: EUR.USD
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: EUR.ZAR
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: EUR.PLN
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: EUR.NZD
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: GBP.JPY
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: GBP.USD
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: JPY.USD
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: NOK.SEK
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: NOK.USD
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: NZD.USD
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: SEK.USD
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+                   -
+                      currencyPair: SGD.USD
+                      sources:
+                              -
+                                 sourceID: 'Standard'
+                                 dir: '{0}\fx.volatilities.YYYYMMDD.EMEA'
+                                 pattern: 'fx.volatilities\.([0-9]{8})\.EMEA'
+
+sourceTargetCalendar: 'TGT.cal'
+# Simulation date
+baseDate: '01May2019'
+# Simulation currency
+base_Currency: 'EUR'
+# Description of the market data file for Adaptiv Analytics
+description: ''
+# This must be set to Yes
+exclude_Deals_With_Missing_Market_Data: 'Yes'
+# Specifies the proxying rules file for Adaptiv Analytics
+proxying_Rules_File: ''
+# This must be set to 1
+script_Base_Scenario_Multiplier: '1'
+# What to do if the correlation matrix is not positive semidefinite
+correlations_Healing_Method: 'Eigenvalue_Raising'
+# Specifies the grouping rules file for Adaptiv Analytics
+# Grouping rules are part of proxying rules
+grouping_File: ''
+# Max used number of data points in the historical time series
+historyLength: 3000
+# Min used number of data points in the historical time series
+minHistoryLength: 500
+# Where to put the market data file for Adaptiv Analytics
+outputFile: 'MarketData20180601.dat_'
+majorCurrencies:
+    -
+        name: EUR
+        calibrationCurve: BENCHMARK EURIBOR 6M CURVE
+        initialCurve: EUR DISCOUNT CURVE
+    -
+        name: USD
+        calibrationCurve: BENCHMARK USD LIBOR 3M CURVE
+        initialCurve: USD DISCOUNT CURVE
+    -
+        name: GBP
+        calibrationCurve: BENCHMARK GBP LIBOR 6M CURVE
+        initialCurve: GBP DISCOUNT CURVE
+    -
+        name: CHF
+        calibrationCurve: BENCHMARK CHF LIBOR 6M CURVE
+        initialCurve: CHF DISCOUNT CURVE
+    -
+        name: JPY
+        calibrationCurve: BENCHMARK JPY LIBOR 6M CURVE
+        initialCurve: JPY DISCOUNT CURVE
+    -
+        name: AUD
+        calibrationCurve: BENCHMARK AUD BBSW 6M CURVE
+        initialCurve: AUD DISCOUNT CURVE
+    -
+        name: CAD
+        calibrationCurve: CAD CDOR 6M CURVE
+        initialCurve: CAD DISCOUNT CURVE
+#    -
+#        name: CNY
+#        calibrationCurve: BENCHMARK CNY FX CURVE
+#        initialCurve: BENCHMARK CNY FX CURVE
+    -
+        name: CZK
+        calibrationCurve: CZK PRIBOR 3M CURVE
+        initialCurve: CZK DISCOUNT CURVE
+    -
+        name: DKK
+        calibrationCurve: DKK CIBOR 3M CURVE
+        initialCurve: DKK DISCOUNT CURVE
+    -
+        name: HKD
+        calibrationCurve: HKD DISCOUNT CURVE
+        initialCurve: HKD DISCOUNT CURVE
+    -
+        name: ILS
+        calibrationCurve: BENCHMARK ILS FX CURVE
+        initialCurve: BENCHMARK ILS FX CURVE
+    -
+        name: ISK
+        calibrationCurve: BENCHMARK ISK FX CURVE
+        initialCurve: BENCHMARK ISK FX CURVE
+#    -
+#        name: KRW
+#        calibrationCurve: BENCHMARK KRW FX CURVE
+#        initialCurve: BENCHMARK KRW FX CURVE
+    -
+        name: NOK
+        calibrationCurve: BENCHMARK NOK OIBOR 6M CURVE
+        initialCurve: NOK DISCOUNT CURVE
+    -
+        name: SEK
+        calibrationCurve: SEK STIBOR 6M CURVE
+        initialCurve: SEK DISCOUNT CURVE
+    -
+        name: SGD
+        calibrationCurve: SGD SIBOR 6M L
+        initialCurve: BENCHMARK SGD FX CURVE
+    -
+        name: TWD
+        calibrationCurve: BENCHMARK TWD FX CURVE
+        initialCurve: BENCHMARK TWD FX CURVE
+
+majorCommodities:
+    -
+        name: ETH CONWAY IN E-P USD-GAL
+        calibrationCurve: ETHCONWAYINEP
+        type: energy
+    -
+        name: IBUT CONWAY USD-GAL
+        calibrationCurve: IBUTCONWAY
+        type: energy
+    -
+        name: WTI NYMEX
+        calibrationCurve: WTI NYMEX
+        type: energy
+    -
+        name: BR ICE
+        calibrationCurve: BR ICE
+        type: energy
+    -
+        name: NG NYMEX
+        calibrationCurve: NG NYMEX
+        type: seasonal_energy
+    -
+        name: GO01 ROT FB USD-MT
+        calibrationCurve: GO01 ROT FB
+        type: energy
+    -
+        name: F35 ROT FB USD-MT
+        calibrationCurve: F35 ROT FB
+        type: energy
+    -
+        name: HSFO380 SGP FC USD-MT
+        calibrationCurve: HSFO380 SGP FC
+        type: energy
+    -
+        name: JK ROT FB USD-MT
+        calibrationCurve: JK ROT FB
+        type: energy
+    -
+        name: NG HOUSTON SC IF USD-MMBTU
+        calibrationCurve: NGHOUSTONSC
+        type: seasonal_energy
+    -
+        name: BR DATED USD-BBL
+        calibrationCurve: BR DATED
+        type: energy
+    -
+        name: WTI ARGUS USD-BBL
+        calibrationCurve: WTIARGUS
+        type: energy
+    -
+        name: LLS ARGUS USD-BBL
+        calibrationCurve: LLSARGUS
+        type: energy
+    -
+        name: BUT CONWAY USD-GAL
+        calibrationCurve: BUTCONWAY
+        type: seasonal_energy
+    -
+        name: BUT MTBEL NON-TET USD-GAL
+        calibrationCurve: BUTMTBELNONTET
+        type: seasonal_energy
+    -
+        name: ETH MTBEL PURITY USD-GAL
+        calibrationCurve: ETHMTBELPURITY
+        type: energy
+    -
+        name: IBUT MTBEL NON-TET USD-GAL
+        calibrationCurve: IBUTMTBELNONTET
+        type: seasonal_energy
+    -
+        name: NGL CONWAY USD-GAL
+        calibrationCurve: NGLCONWAY
+        type: seasonal_energy
+    -
+        name: NGL MTBEL NON-TET USD-GAL
+        calibrationCurve: NGLMTBELNONTET
+        type: seasonal_energy
+    -
+        name: PRO CONWAY USD-GAL
+        calibrationCurve: PROCONWAY
+        type: seasonal_energy
+    -
+        name: PRO MTBEL NON-TET USD-GAL
+        calibrationCurve: PROMTBELNONTET
+        type: seasonal_energy
+    -
+        name: NG TCO LEIDY IF USD-MMBTU
+        calibrationCurve: NGTCOLEIDY
+        type: seasonal_energy
+#    -
+#        name: NG UK NBP DAM GBP-THM
+#        calibrationCurve: NG UK NBP DAM
+#        type: seasonal_energy
+
+#    -
+#        name: NGNORTHWESTRM
+#        calibrationCurve: NGNORTHWESTRM
+#        type: spread
+#        spread2: NG-NYMEX
+
+samples:
+    -
+        name: BULLET_NYB
+        offset: 0
+        calendar: NYB
+    -
+        name: BULLET_LNB
+        offset: 0
+        calendar: NYB
+    -
+        name: DAILY_NYB
+        offset: 0
+        calendar: NYB
+    -
+        name: DAILY_LNB
+        offset: 0
+        calendar: NYB
+
+fxPrincipalCurrencies: [ USD, GBP, JPY ]
+fxAdditionalFactors: 3
+# The list of products with implied volatility for which model calibration will be performed. If there is an entry for a certain product in this list, the same product has to appear above under sourceImpVol.
+impliedVolProducts:
+    -
+        name: InterestRateVol
+        currencies:
+                      -
+                         model: SimpleInterestRateVolModel
+                         currency: EUR
+                      -
+                         model: SimpleInterestRateVolModel
+                         currency: USD
+                      -
+                         model: SimpleInterestRateVolModel
+                         currency: CHF
+                      -
+                         model: SimpleInterestRateVolModel
+                         currency: DKK
+                      -
+                         model: SimpleInterestRateVolModel
+                         currency: JPY
+                      -
+                         model: SimpleInterestRateVolModel
+                         currency: NOK
+                      -
+                         model: SimpleInterestRateVolModel
+                         currency: SEK
+                      -
+                         model: SimpleInterestRateVolModel
+                         currency: GBP
+    -
+        name: InterestYieldVol
+        currencies:
+                      -
+                         model: SimpleInterestYieldVolModel
+                         currency: EUR
+                      -
+                         model: SimpleInterestYieldVolModel
+                         currency: USD
+                      -
+                         model: SimpleInterestYieldVolModel
+                         currency: CHF
+                      -
+                         model: SimpleInterestYieldVolModel
+                         currency: DKK
+                      -
+                         model: SimpleInterestYieldVolModel
+                         currency: JPY
+                      -
+                         model: SimpleInterestYieldVolModel
+                         currency: NOK
+                      -
+                         model: SimpleInterestYieldVolModel
+                         currency: SEK
+                      -
+                         model: SimpleInterestYieldVolModel
+                         currency: GBP
+    -
+        name: FXVol
+        currencyPairs:
+                      -
+                         model: SimpleFXVolModel
+                         currencyPair: EUR.USD
+                      -
+                         model: SimpleFXVolModel
+                         currencyPair: EUR.GBP
+impliedVols:
+    - EUR
+    - USD
+    - GBP
+    - CHF
+    - JPY
+    - SEK
+    - DKK
+    - NOK
+
+impliedFXVols:
+    - AUD.JPY
+    - AUD.EUR
+    - AUD.USD
+    - CAD.EUR
+    - CAD.USD
+    - CHF.EUR
+    - CHF.NOK
+    - CHF.USD
+    - CNH.EUR
+    - CNH.USD
+    - EUR.GBP
+    - EUR.JPY
+    - EUR.NOK
+    - EUR.PLN
+    - EUR.SEK
+    - EUR.USD
+    - EUR.ZAR
+    - EUR.NZD
+    - GBP.JPY
+    - GBP.USD
+    - JPY.USD
+    - NOK.SEK
+    - NOK.USD
+    - NZD.USD
+    - SEK.USD
+    - SGD.USD
+
+spreadCurves:
+    -
+        baseCurve: EUR DISCOUNT CURVE
+        derivedCurve: EUR EURIBOR 1M CURVE
+        spreadCurve: EUR.1M
+        currency: EUR
+    -
+        baseCurve: EUR EURIBOR 1M CURVE
+        derivedCurve: EUR EURIBOR 3M CURVE
+        spreadCurve: EUR.1M.3M
+        currency: EUR
+    -
+        baseCurve: EUR EURIBOR 3M CURVE
+        derivedCurve: BENCHMARK EURIBOR 6M CURVE
+        spreadCurve: EUR.1M.3M.6M
+        currency: EUR
+    -
+        baseCurve: BENCHMARK EURIBOR 6M CURVE
+        derivedCurve: EUR EURIBOR 1Y CURVE
+        spreadCurve: EUR.1M.3M.6M.12M
+        currency: EUR
+    -
+        baseCurve: USD DISCOUNT CURVE
+        derivedCurve: USD LIBOR 1M CURVE
+        spreadCurve: USD.1M
+        currency: USD
+    -
+        baseCurve: USD LIBOR 1M CURVE
+        derivedCurve: BENCHMARK USD LIBOR 3M CURVE
+        spreadCurve: USD.1M.3M
+        currency: USD
+    -
+        baseCurve: BENCHMARK USD LIBOR 3M CURVE
+        derivedCurve: USD LIBOR 6M CURVE
+        spreadCurve: USD.1M.3M.6M
+        currency: USD
+    -
+        baseCurve: USD LIBOR 6M CURVE
+        derivedCurve: USD LIBOR 1Y CURVE
+        spreadCurve: USD.1M.3M.6M.12M
+        currency: USD
+    -
+        baseCurve: CHF DISCOUNT CURVE
+        derivedCurve: CHF LIBOR 1M CURVE
+        spreadCurve: CHF.1M
+        currency: CHF
+    -
+        baseCurve: CHF LIBOR 1M CURVE
+        derivedCurve: CHF LIBOR 3M CURVE
+        spreadCurve: CHF.1M.3M
+        currency: CHF
+    -
+        baseCurve: CHF LIBOR 3M CURVE
+        derivedCurve: BENCHMARK CHF LIBOR 6M CURVE
+        spreadCurve: CHF.1M.3M.6M
+        currency: CHF
+    -
+        baseCurve: BENCHMARK CHF LIBOR 6M CURVE
+        derivedCurve: CHF LIBOR 1Y CURVE
+        spreadCurve: CHF.1M.3M.6M.12M
+        currency: CHF
+    -
+        baseCurve: GBP DISCOUNT CURVE
+        derivedCurve: GBP LIBOR 1M CURVE
+        spreadCurve: GBP.1M
+        currency: GBP
+    -
+        baseCurve: GBP LIBOR 1M CURVE
+        derivedCurve: GBP LIBOR 3M CURVE
+        spreadCurve: GBP.1M.3M
+        currency: GBP
+    -
+        baseCurve: GBP LIBOR 3M CURVE
+        derivedCurve: BENCHMARK GBP LIBOR 6M CURVE
+        spreadCurve: GBP.1M.3M.6M
+        currency: GBP
+    -
+        baseCurve: BENCHMARK GBP LIBOR 6M CURVE
+        derivedCurve: GBP LIBOR 1Y CURVE
+        spreadCurve: GBP.1M.3M.6M.12M
+        currency: GBP
+    -
+        baseCurve: JPY DISCOUNT CURVE
+        derivedCurve: JPY LIBOR 1M CURVE
+        spreadCurve: JPY.1M
+        currency: JPY
+    -
+        baseCurve: JPY LIBOR 1M CURVE
+        derivedCurve: JPY LIBOR 3M CURVE
+        spreadCurve: JPY.1M.3M
+        currency: JPY
+    -
+        baseCurve: JPY LIBOR 3M CURVE
+        derivedCurve: BENCHMARK JPY LIBOR 6M CURVE
+        spreadCurve: JPY.1M.3M.6M
+        currency: JPY
+    -
+        baseCurve: BENCHMARK JPY LIBOR 6M CURVE
+        derivedCurve: JPY LIBOR 1Y CURVE
+        spreadCurve: JPY.1M.3M.6M.12M
+        currency: JPY
+    -
+        baseCurve: AUD DISCOUNT CURVE
+        derivedCurve: AUD BBSW 1M CURVE
+        spreadCurve: AUD.1M
+        currency: AUD
+    -
+        baseCurve: AUD BBSW 1M CURVE
+        derivedCurve: AUD BBSW 3M CURVE
+        spreadCurve: AUD.1M.3M
+        currency: AUD
+    -
+        baseCurve: AUD BBSW 3M CURVE
+        derivedCurve: BENCHMARK AUD BBSW 6M CURVE
+        spreadCurve: AUD.1M.3M.6M
+        currency: AUD
+    -
+        baseCurve: BENCHMARK AUD BBSW 6M CURVE
+        derivedCurve: AUD BBSW 1Y CURVE
+        spreadCurve: AUD.1M.3M.6M.12M
+        currency: AUD
+    -
+        baseCurve: CAD DISCOUNT CURVE
+        derivedCurve: CAD CDOR 1M CURVE
+        spreadCurve: CAD.1M
+        currency: CAD
+    -
+        baseCurve: CAD CDOR 1M CURVE
+        derivedCurve: BENCHMARK CAD CDOR 3M CURVE
+        spreadCurve: CAD.1M.3M
+        currency: CAD
+    -
+        baseCurve: BENCHMARK CAD CDOR 3M CURVE
+        derivedCurve: CAD CDOR 6M CURVE
+        spreadCurve: CAD.1M.3M.6M
+        currency: CAD
+    -
+        baseCurve: CAD CDOR 6M CURVE
+        derivedCurve: CAD CDOR 1Y CURVE
+        spreadCurve: CAD.1M.3M.6M.12M
+        currency: CAD
+    -
+        baseCurve: CZK DISCOUNT CURVE
+        derivedCurve: CZK PRIBOR 1M CURVE
+        spreadCurve: CZK.1M
+        currency: CZK
+    -
+        baseCurve: CZK PRIBOR 1M CURVE
+        derivedCurve: CZK PRIBOR 3M CURVE
+        spreadCurve: CZK.1M.3M
+        currency: CZK
+    -
+        baseCurve: DKK DISCOUNT CURVE
+        derivedCurve: DKK CIBOR 1M CURVE
+        spreadCurve: DKK.1M
+        currency: DKK
+    -
+        baseCurve: DKK CIBOR 1M CURVE
+        derivedCurve: DKK CIBOR 3M CURVE
+        spreadCurve: DKK.1M.3M
+        currency: DKK
+    -
+        baseCurve: NOK DISCOUNT CURVE
+        derivedCurve: NOK OIBOR 1M CURVE
+        spreadCurve: NOK.1M
+        currency: NOK
+    -
+        baseCurve: NOK OIBOR 1M CURVE
+        derivedCurve: NOK OIBOR 3M CURVE
+        spreadCurve: NOK.1M.3M
+        currency: NOK
+    -
+        baseCurve: NOK OIBOR 3M CURVE
+        derivedCurve: BENCHMARK NOK OIBOR 6M CURVE
+        spreadCurve: NOK.1M.3M.6M
+        currency: NOK
+
+    -
+        baseCurve: NZD DISCOUNT CURVE
+        derivedCurve: NZD BKBM 1M CURVE
+        spreadCurve: NZD.1M
+        currency: NZD
+    -
+        baseCurve: NZD BKBM 1M CURVE
+        derivedCurve: BENCHMARK NZD BKBM 3M CURVE
+        spreadCurve: NZD.1M.3M
+        currency: NZD
+    -
+        baseCurve: BENCHMARK NZD BKBM 3M CURVE
+        derivedCurve: NZD BKBM 6M CURVE
+        spreadCurve: NZD.1M.3M.6M
+        currency: NZD
+
+    -
+        baseCurve: SEK DISCOUNT CURVE
+        derivedCurve: SEK STIBOR 1M CURVE
+        spreadCurve: SEK.1M
+        currency: SEK
+    -
+        baseCurve: SEK STIBOR 1M CURVE
+        derivedCurve: SEK STIBOR 3M CURVE
+        spreadCurve: SEK.1M.3M
+        currency: SEK
+    -
+        baseCurve: SEK STIBOR 3M CURVE
+        derivedCurve: SEK STIBOR 6M CURVE
+        spreadCurve: SEK.1M.3M.6M
+        currency: SEK
+
+    -
+        baseCurve: BENCHMARK SGD FX CURVE
+        derivedCurve: SGD SIBOR 1M L
+        spreadCurve: SGD.1M
+        currency: SGD
+    -
+        baseCurve: SGD SIBOR 1M L
+        derivedCurve: SGD SIBOR 3M L
+        spreadCurve: SGD.1M.3M
+        currency: SGD
+    -
+        baseCurve: SGD SIBOR 3M L
+        derivedCurve: SGD SIBOR 6M L
+        spreadCurve: SGD.1M.3M.6M
+        currency: SGD
+
+# FX curves
+    -
+        baseCurve: SEK DISCOUNT CURVE
+        derivedCurve: SEK BASIS CURVE
+        spreadCurve: SEK.FX
+        currency: SEK
+
+    -
+        baseCurve: CHF DISCOUNT CURVE
+        derivedCurve: CHF BASIS CURVE
+        spreadCurve: CHF.FX
+        currency: CHF
+
+    -
+        baseCurve: EUR DISCOUNT CURVE
+        derivedCurve: EUR BASIS CURVE
+        spreadCurve: EUR.FX
+        currency: EUR
+
+    -
+        baseCurve: NOK DISCOUNT CURVE
+        derivedCurve: NOK BASIS CURVE
+        spreadCurve: NOK.FX
+        currency: NOK
+
+    -
+        baseCurve: GBP DISCOUNT CURVE
+        derivedCurve: GBP BASIS CURVE
+        spreadCurve: GBP.FX
+        currency: GBP
+
+    -
+        baseCurve: JPY DISCOUNT CURVE
+        derivedCurve: JPY BASIS CURVE
+        spreadCurve: JPY.FX
+        currency: JPY
+
+    -
+        baseCurve: AUD DISCOUNT CURVE
+        derivedCurve: AUD BASIS CURVE
+        spreadCurve: AUD.FX
+        currency: AUD
+
+    -
+        baseCurve: CAD DISCOUNT CURVE
+        derivedCurve: CAD BASIS CURVE
+        spreadCurve: CAD.FX
+        currency: CAD
+
+    -
+        baseCurve: NZD DISCOUNT CURVE
+        derivedCurve: NZD BASIS CURVE
+        spreadCurve: NZD.FX
+        currency: NZD
+
+    -
+        baseCurve: DKK DISCOUNT CURVE
+        derivedCurve: DKK BASIS CURVE
+        spreadCurve: DKK.FX
+        currency: DKK
+
+    -
+        baseCurve: PLN DISCOUNT CURVE
+        derivedCurve: PLN FX CURVE
+        spreadCurve: PLN.FX
+        currency: PLN
+
+    -
+        baseCurve: BENCHMARK ZAR FX CURVE
+        derivedCurve: BENCHMARK ZAR FX CURVE
+        spreadCurve: ZAR.FX
+        currency: ZAR
+
+    -
+        baseCurve: TRY DISCOUNT CURVE
+        derivedCurve: TRY FX CURVE
+        spreadCurve: TRY.FX
+        currency: TRY
+
+    -
+        baseCurve: BENCHMARK THB FX CURVE
+        derivedCurve: BENCHMARK THB FX CURVE
+        spreadCurve: THB.FX
+        currency: THB
+
+    -
+        baseCurve: HKD DISCOUNT CURVE
+        derivedCurve: BENCHMARK HKD FX CURVE
+        spreadCurve: HKD.FX
+        currency: HKD
+
+    -
+        baseCurve: BENCHMARK ILS FX CURVE
+        derivedCurve: BENCHMARK ILS FX CURVE
+        spreadCurve: ILS.FX
+        currency: ILS
+
+    -
+        baseCurve: BENCHMARK AED FX CURVE
+        derivedCurve: BENCHMARK AED FX CURVE
+        spreadCurve: AED.FX
+        currency: AED
+
+    -
+        baseCurve: HUF DISCOUNT CURVE
+        derivedCurve: HUF FX CURVE
+        spreadCurve: HUF.FX
+        currency: HUF
+
+    -
+        baseCurve: BENCHMARK MXN FX CURVE
+        derivedCurve: BENCHMARK MXN FX CURVE
+        spreadCurve: MXN.FX
+        currency: MXN
+
+    -
+        baseCurve: BENCHMARK RUB FX CURVE
+        derivedCurve: BENCHMARK RUB FX CURVE
+        spreadCurve: RUB.FX
+        currency: RUB
+
+    -
+        baseCurve: RON DISCOUNT CURVE
+        derivedCurve: RON FX CURVE
+        spreadCurve: RON.FX
+        currency: RON
+
+    -
+        baseCurve: CZK DISCOUNT CURVE
+        derivedCurve: CZK FX CURVE
+        spreadCurve: CZK.FX
+        currency: CZK
+
+    -
+        baseCurve: SAR FX CURVE
+        derivedCurve: SAR FX CURVE
+        spreadCurve: SAR.FX
+        currency: SAR
+
+    -
+        baseCurve: BENCHMARK CNY FX CURVE
+        derivedCurve: BENCHMARK CNY FX CURVE
+        spreadCurve: CNY.FX
+        currency: CNY
+
+    -
+        baseCurve: CNH DISCOUNT CURVE
+        derivedCurve: CNH FX CURVE
+        spreadCurve: CNH.FX
+        currency: CNH
+
+    -
+        baseCurve: CNH DISCOUNT CURVE
+        derivedCurve: CNH BASIS CURVE
+        spreadCurve: CNH.BASIS
+        currency: CNH
+
+    -
+        baseCurve: CNH DISCOUNT CURVE
+        derivedCurve: CNH HIBOR 3M CURVE
+        spreadCurve: CNH.3M
+        currency: CNH
+
+    -
+        baseCurve: BENCHMARK BRL FX CURVE
+        derivedCurve: BENCHMARK BRL FX CURVE
+        spreadCurve: BRL.FX
+        currency: BRL
+
+    -
+        baseCurve: MYR FX CURVE
+        derivedCurve: MYR FX CURVE
+        spreadCurve: MYR.FX
+        currency: MYR
+
+    -
+        baseCurve: BENCHMARK INR FX CURVE
+        derivedCurve: BENCHMARK INR FX CURVE
+        spreadCurve: INR.FX
+        currency: INR
+
+    -
+        baseCurve: BENCHMARK IDR FX CURVE
+        derivedCurve: BENCHMARK IDR FX CURVE
+        spreadCurve: IDR.FX
+        currency: IDR
+
+    -
+        baseCurve: BENCHMARK SGD FX CURVE
+        derivedCurve: BENCHMARK SGD FX CURVE
+        spreadCurve: SGD.FX
+        currency: SGD
+
+    -
+        baseCurve: BENCHMARK ANG FX CURVE
+        derivedCurve: BENCHMARK ANG FX CURVE
+        spreadCurve: ANG.FX
+        currency: ANG
+
+    -
+        baseCurve: BENCHMARK ARS FX CURVE
+        derivedCurve: BENCHMARK ARS FX CURVE
+        spreadCurve: ARS.FX
+        currency: ARS
+
+    -
+        baseCurve: BENCHMARK AWG FX CURVE
+        derivedCurve: BENCHMARK AWG FX CURVE
+        spreadCurve: AWG.FX
+        currency: AWG
+
+    -
+        baseCurve: BGN FX CURVE
+        derivedCurve: BGN FX CURVE
+        spreadCurve: BGN.FX
+        currency: BGN
+
+    -
+        baseCurve: BENCHMARK BHD FX CURVE
+        derivedCurve: BENCHMARK BHD FX CURVE
+        spreadCurve: BHD.FX
+        currency: BHD
+
+    -
+        baseCurve: BMD FX CURVE
+        derivedCurve: BMD FX CURVE
+        spreadCurve: BMD.FX
+        currency: BMD
+
+    -
+        baseCurve: CLP FX CURVE
+        derivedCurve: CLP FX CURVE
+        spreadCurve: CLP.FX
+        currency: CLP
+
+    -
+        baseCurve: COP FX CURVE
+        derivedCurve: COP FX CURVE
+        spreadCurve: COP.FX
+        currency: COP
+
+    -
+        baseCurve: CRC FX CURVE
+        derivedCurve: CRC FX CURVE
+        spreadCurve: CRC.FX
+        currency: CRC
+
+    -
+        baseCurve: BENCHMARK DZD FX CURVE
+        derivedCurve: BENCHMARK DZD FX CURVE
+        spreadCurve: DZD.FX
+        currency: DZD
+
+    -
+        baseCurve: BENCHMARK HRK FX CURVE
+        derivedCurve: BENCHMARK HRK FX CURVE
+        spreadCurve: HRK.FX
+        currency: HRK
+
+    -
+        baseCurve: BENCHMARK EGP FX CURVE
+        derivedCurve: BENCHMARK EGP FX CURVE
+        spreadCurve: EGP.FX
+        currency: EGP
+
+    -
+        baseCurve: IRR FX CURVE
+        derivedCurve: IRR FX CURVE
+        spreadCurve: IRR.FX
+        currency: IRR
+
+    -
+        baseCurve: JMD FX CURVE
+        derivedCurve: JMD FX CURVE
+        spreadCurve: JMD.FX
+        currency: JMD
+
+    -
+        baseCurve: JOD FX CURVE
+        derivedCurve: JOD FX CURVE
+        spreadCurve: JOD.FX
+        currency: JOD
+
+    -
+        baseCurve: BENCHMARK KRW FX CURVE
+        derivedCurve: BENCHMARK KRW FX CURVE
+        spreadCurve: KRW.FX
+        currency: KRW
+
+    -
+        baseCurve: BENCHMARK KWD FX CURVE
+        derivedCurve: BENCHMARK KWD FX CURVE
+        spreadCurve: KWD.FX
+        currency: KWD
+
+    -
+        baseCurve: KZT FX CURVE
+        derivedCurve: KZT FX CURVE
+        spreadCurve: KZT.FX
+        currency: KZT
+
+    -
+        baseCurve: LKR FX CURVE
+        derivedCurve: LKR FX CURVE
+        spreadCurve: LKR.FX
+        currency: LKR
+
+    -
+        baseCurve: LRD FX CURVE
+        derivedCurve: LRD FX CURVE
+        spreadCurve: LRD.FX
+        currency: LRD
+
+    -
+        baseCurve: LTL FX CURVE
+        derivedCurve: LTL FX CURVE
+        spreadCurve: LTL.FX
+        currency: LTL
+
+    -
+        baseCurve: LVL FX CURVE
+        derivedCurve: LVL FX CURVE
+        spreadCurve: LVL.FX
+        currency: LVL
+
+    -
+        baseCurve: BENCHMARK MAD FX CURVE
+        derivedCurve: BENCHMARK MAD FX CURVE
+        spreadCurve: MAD.FX
+        currency: MAD
+
+    -
+        baseCurve: MMK FX CURVE
+        derivedCurve: MMK FX CURVE
+        spreadCurve: MMK.FX
+        currency: MMK
+
+    -
+        baseCurve: MUR FX CURVE
+        derivedCurve: MUR FX CURVE
+        spreadCurve: MUR.FX
+        currency: MUR
+
+    -
+        baseCurve: MWK FX CURVE
+        derivedCurve: MWK FX CURVE
+        spreadCurve: MWK.FX
+        currency: MWK
+
+    -
+        baseCurve: PAB FX CURVE
+        derivedCurve: PAB FX CURVE
+        spreadCurve: PAB.FX
+        currency: PAB
+
+    -
+        baseCurve: PEN FX CURVE
+        derivedCurve: PEN FX CURVE
+        spreadCurve: PEN.FX
+        currency: PEN
+
+    -
+        baseCurve: PHP FX CURVE
+        derivedCurve: PHP FX CURVE
+        spreadCurve: PHP.FX
+        currency: PHP
+
+    -
+        baseCurve: PKR FX CURVE
+        derivedCurve: PKR FX CURVE
+        spreadCurve: PKR.FX
+        currency: PKR
+
+    -
+        baseCurve: QAR FX CURVE
+        derivedCurve: QAR FX CURVE
+        spreadCurve: QAR.FX
+        currency: QAR
+
+    -
+        baseCurve: RSD FX CURVE
+        derivedCurve: RSD FX CURVE
+        spreadCurve: RSD.FX
+        currency: RSD
+
+    -
+        baseCurve: TTD FX CURVE
+        derivedCurve: TTD FX CURVE
+        spreadCurve: TTD.FX
+        currency: TTD
+
+    -
+        baseCurve: TZS FX CURVE
+        derivedCurve: TZS FX CURVE
+        spreadCurve: TZS.FX
+        currency: TZS
+
+    -
+        baseCurve: UAH FX CURVE
+        derivedCurve: UAH FX CURVE
+        spreadCurve: UAH.FX
+        currency: UAH
+# USB is an alias for USD which is used in Brazilian transactions.
+    -
+        baseCurve: USD DISCOUNT CURVE
+        derivedCurve: BENCHMARK USD LIBOR 3M CURVE
+        spreadCurve: USB.FX
+        currency: USB
+# Basis curves
+    -
+        baseCurve: BENCHMARK SGD FX CURVE
+        derivedCurve: SGD BASIS CURVE L
+        spreadCurve: SGD.BASIS
+        currency: SGD
+
+    -
+        baseCurve: SEK DISCOUNT CURVE
+        derivedCurve: SEK BASIS CURVE
+        spreadCurve: SEK.BASIS
+        currency: SEK
+
+    -
+        baseCurve: CHF DISCOUNT CURVE
+        derivedCurve: CHF BASIS CURVE
+        spreadCurve: CHF.BASIS
+        currency: CHF
+
+    -
+        baseCurve: EUR DISCOUNT CURVE
+        derivedCurve: EUR BASIS CURVE
+        spreadCurve: EUR.BASIS
+        currency: EUR
+
+    -
+        baseCurve: NOK DISCOUNT CURVE
+        derivedCurve: NOK BASIS CURVE
+        spreadCurve: NOK.BASIS
+        currency: NOK
+
+    -
+        baseCurve: GBP DISCOUNT CURVE
+        derivedCurve: GBP BASIS CURVE
+        spreadCurve: GBP.BASIS
+        currency: GBP
+
+    -
+        baseCurve: JPY DISCOUNT CURVE
+        derivedCurve: JPY BASIS CURVE
+        spreadCurve: JPY.BASIS
+        currency: JPY
+
+    -
+        baseCurve: AUD DISCOUNT CURVE
+        derivedCurve: AUD BASIS CURVE
+        spreadCurve: AUD.BASIS
+        currency: AUD
+
+    -
+        baseCurve: CAD DISCOUNT CURVE
+        derivedCurve: CAD BASIS CURVE
+        spreadCurve: CAD.BASIS
+        currency: CAD
+
+    -
+        baseCurve: NZD DISCOUNT CURVE
+        derivedCurve: NZD BASIS CURVE
+        spreadCurve: NZD.BASIS
+        currency: NZD
+
+    -
+        baseCurve: DKK DISCOUNT CURVE
+        derivedCurve: DKK BASIS CURVE
+        spreadCurve: DKK.BASIS
+        currency: DKK
+
+    -
+        baseCurve: OMR FX CURVE
+        derivedCurve: OMR FX CURVE
+        spreadCurve: OMR.FX
+        currency: OMR
+
+    -
+        baseCurve: BENCHMARK XAG FX CURVE
+        derivedCurve: BENCHMARK XAG FX CURVE
+        spreadCurve: XAG.FX
+        currency: XAG
+
+    -
+        baseCurve: BENCHMARK XAU FX CURVE
+        derivedCurve: BENCHMARK XAU FX CURVE
+        spreadCurve: XAU.FX
+        currency: XAU
+
+    -
+        baseCurve: BENCHMARK XPD FX L CURVE
+        derivedCurve: BENCHMARK XPD FX L CURVE
+        spreadCurve: XPD.FX
+        currency: XPD
+
+    -
+        baseCurve: BENCHMARK XPT FX CURVE
+        derivedCurve: BENCHMARK XPT FX CURVE
+        spreadCurve: XPT.FX
+        currency: XPT
+
+otherCurrencies:
+    -
+        name: AED
+        initialCurve: BENCHMARK AED FX CURVE
+    -
+        name: ANG
+        initialCurve: BENCHMARK ANG FX CURVE
+    -
+        name: ARS
+        initialCurve: BENCHMARK ARS FX CURVE
+    -
+        name: AUD
+        initialCurve: AUD DISCOUNT CURVE
+    -
+        name: AWG
+        initialCurve: BENCHMARK AWG FX CURVE
+    -
+        name: BGN
+        initialCurve: BGN FX CURVE
+    -
+        name: BHD
+        initialCurve: BENCHMARK BHD FX CURVE
+    -
+        name: BMD
+        initialCurve: BMD FX CURVE
+    -
+        name: BRL
+        initialCurve: BENCHMARK BRL FX CURVE
+    -
+        name: CAD
+        initialCurve: CAD DISCOUNT CURVE
+    -
+        name: CLP
+        initialCurve: CLP FX CURVE
+    -
+        name: CNY
+        initialCurve: BENCHMARK CNY FX CURVE
+
+    -
+        name: CNH
+        initialCurve: CNH DISCOUNT CURVE
+
+    -
+        name: COP
+        initialCurve: COP FX CURVE
+    -
+        name: CRC
+        initialCurve: CRC FX CURVE
+    -
+        name: CZK
+        initialCurve: CZK DISCOUNT CURVE
+    -
+        name: DKK
+        initialCurve: DKK DISCOUNT CURVE
+    -
+        name: DZD
+        initialCurve: BENCHMARK DZD FX CURVE
+    -
+        name: EGP
+        initialCurve: BENCHMARK EGP FX CURVE
+    -
+        name: HKD
+        initialCurve: HKD DISCOUNT CURVE
+    -
+        name: HRK
+        initialCurve: BENCHMARK HRK FX CURVE
+    -
+        name: HUF
+        initialCurve: HUF DISCOUNT CURVE
+    -
+        name: IDR
+        initialCurve: BENCHMARK IDR FX CURVE
+    -
+        name: ILS
+        initialCurve: BENCHMARK ILS FX CURVE
+    -
+        name: INR
+        initialCurve: BENCHMARK INR FX CURVE
+    -
+        name: IRR
+        initialCurve: IRR FX CURVE
+    -
+        name: ISK
+        initialCurve: BENCHMARK ISK FX CURVE
+    -
+        name: JMD
+        initialCurve: JMD FX CURVE
+    -
+        name: JOD
+        initialCurve: JOD FX CURVE
+    -
+        name: KRW
+        initialCurve: BENCHMARK KRW FX CURVE
+    -
+        name: KWD
+        initialCurve: BENCHMARK KWD FX CURVE
+# No FX rates are available for this currency
+#    -
+#        name: KYD
+#        initialCurve: KYD FX L CURVE
+    -
+        name: KZT
+        initialCurve: KZT FX CURVE
+    -
+        name: LKR
+        initialCurve: LKR FX CURVE
+    -
+        name: LRD
+        initialCurve: LRD FX CURVE
+    -
+        name: LTL
+        initialCurve: LTL FX CURVE
+    -
+        name: LVL
+        initialCurve: LVL FX CURVE
+    -
+        name: MAD
+        initialCurve: BENCHMARK MAD FX CURVE
+    -
+        name: MMK
+        initialCurve: MMK FX CURVE
+    -
+        name: MUR
+        initialCurve: MUR FX CURVE
+    -
+        name: MWK
+        initialCurve: MWK FX CURVE
+    -
+        name: MXN
+        initialCurve: BENCHMARK MXN FX CURVE
+    -
+        name: MYR
+        initialCurve: MYR FX CURVE
+    -
+        name: NOK
+        initialCurve: NOK DISCOUNT CURVE
+    -
+        name: NZD
+        initialCurve: NZD DISCOUNT CURVE
+    -
+        name: OMR
+        initialCurve: OMR FX CURVE
+    -
+        name: PAB
+        initialCurve: PAB FX CURVE
+    -
+        name: PEN
+        initialCurve: PEN FX CURVE
+    -
+        name: PHP
+        initialCurve: PHP FX CURVE
+    -
+        name: PKR
+        initialCurve: PKR FX CURVE
+    -
+        name: PLN
+        initialCurve: PLN DISCOUNT CURVE
+    -
+        name: QAR
+        initialCurve: QAR FX CURVE
+    -
+        name: RON
+        initialCurve: RON DISCOUNT CURVE
+    -
+        name: RSD
+        initialCurve: RSD FX CURVE
+    -
+        name: RUB
+        initialCurve: BENCHMARK RUB FX CURVE
+    -
+        name: SAR
+        initialCurve: SAR FX CURVE
+    -
+        name: SEK
+        initialCurve: SEK DISCOUNT CURVE
+    -
+        name: SGD
+        initialCurve: BENCHMARK SGD FX CURVE
+# No FX rates are available for this currency
+#    -
+#        name: SIT
+#        initialCurve: SIT FX CURVE
+#    -
+#        name: SKK
+#        initialCurve: SKK FX CURVE
+# Wrong spot rates
+#    -
+#        name: SVC
+#        initialCurve: SVC FX CURVE
+    -
+        name: THB
+        initialCurve: BENCHMARK THB FX CURVE
+    -
+        name: TRY
+        initialCurve: TRY DISCOUNT CURVE
+    -
+        name: TTD
+        initialCurve: TTD FX CURVE
+    -
+        name: TWD
+        initialCurve: BENCHMARK TWD FX CURVE
+    -
+        name: TZS
+        initialCurve: TZS FX CURVE
+    -
+        name: UAH
+        initialCurve: UAH FX CURVE
+    -
+        name: XAG
+        initialCurve: BENCHMARK XAG FX CURVE
+    -
+        name: XAU
+        initialCurve: BENCHMARK XAU FX CURVE
+    -
+        name: XPD
+        initialCurve: BENCHMARK XPD FX L CURVE
+    -
+        name: XPT
+        initialCurve: BENCHMARK XPT FX CURVE
+
+# No FX rates are available for this currency
+#   -
+#        name: UDI
+#        initialCurve: UDI FX CURVE
+# Wrong spot rates
+#    -
+#        name: VEF
+#        initialCurve: VEF FX CURVE
+    -
+        name: ZAR
+        initialCurve: BENCHMARK ZAR FX CURVE
+# No FX rates are available for this currency
+#    -
+#        name: ZWL
+#        initialCurve: ZWL FX CURVE
+
+fxRates:
+    - USD.EUR
+    - GBP.EUR
+    - JPY.EUR
+    - CHF.EUR
+    - AED.EUR
+    - ANG.EUR
+    - ARS.EUR
+    - AUD.EUR
+    - AWG.EUR
+    - BGN.EUR
+    - BHD.EUR
+    - BMD.EUR
+    - BRL.EUR
+    - CAD.EUR
+    - CLP.EUR
+    - CNY.EUR
+    - CNH.EUR
+    - COP.EUR
+    - CRC.EUR
+    - CZK.EUR
+    - DKK.EUR
+    - DZD.EUR
+    - EGP.EUR
+    - HKD.EUR
+    - HRK.EUR
+    - HUF.EUR
+    - IDR.EUR
+    - ILS.EUR
+    - INR.EUR
+    - IRR.EUR
+    - ISK.EUR
+    - JMD.EUR
+    - JOD.EUR
+    - KRW.EUR
+    - KWD.EUR
+    - KZT.EUR
+    - LKR.EUR
+    - LRD.EUR
+    - LTL.EUR
+    - MAD.EUR
+    - MMK.EUR
+    - MUR.EUR
+    - MWK.EUR
+    - MXN.EUR
+    - MYR.EUR
+    - NOK.EUR
+    - NZD.EUR
+    - OMR.EUR
+    - PAB.EUR
+    - PEN.EUR
+    - PHP.EUR
+    - PLN.EUR
+    - QAR.EUR
+    - RON.EUR
+    - RSD.EUR
+    - RUB.EUR
+    - SAR.EUR
+    - SEK.EUR
+    - SGD.EUR
+    - THB.EUR
+    - TRY.EUR
+    - TTD.EUR
+    - TWD.EUR
+    - TZS.EUR
+    - UAH.EUR
+    - ZAR.EUR
+    - XAG.EUR
+    - XAU.EUR
+    - XPD.EUR
+    - XPT.EUR
+
+#units
+units:
+  XAG:  Troy ounce
+  XAU:  Troy ounce
+#  XAL:  Troy ounce
+  XPD:  Troy ounce
+  XPT:  Troy ounce
+#  XRH:  Troy ounce
+#  XCU:  Ton
+#  XPB:  Ton
+#  XSN:  Ton
+#  XZN:  Ton
+
+valuationConfiguration: |
+    CFFloatingInterestListDeal=CFFloatingInterestListValuation,Convexity_Correction=Yes,Quanto_Correction=Yes,Faster_Averaging_Valuation=Yes,Use_Survival_Probability=No,Respect_Default=No,OIS_Cashflow_Group_Size=0
+    SwaptionDeal=SwaptionValuation,Forward_Start=No
+    ABNCapDeal=DealSkinValuation
+    ABNFloorDeal=DealSkinValuation
+    ABNNettingCollateralSet=ABNNettingCollateralSetValuation,Cash_Settlement_Risk=Received_Only,Forward_Looking_Closeout=Yes,Deal_Specific_Liquidation=No,Use_Optimal_Collateral=No,Value_On_Key_Call_Dates=No,Test_Inner_Settlement_Period_Dates=No
+    ABNSwapBasisDeal=DealSkinValuation
+    ABNSwapCurrencyDeal=DealSkinValuation
+    ABNSwapInterestDeal=DealSkinValuation
+    ABNSwaptionDeal=DealSkinValuation
+    DealMtmPlusAddOn=ABNMtMPlusAddonValuation

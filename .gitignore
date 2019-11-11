@@ -1,0 +1,30 @@
+*.png
+*.jpg
+*.pgf
+*.html
+*.h5
+*.npy
+*.dat_
+*.dat
+.idea/
+__pycache__/
+untracked/
+.env
+.vscode/
+
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent

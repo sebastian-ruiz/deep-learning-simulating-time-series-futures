@@ -1,0 +1,312 @@
+# Location of registers and caches
+writableDir: 'C:\Users\C61931\Documents\Projects\CalibrationData\full_test'
+# Intermediate folder
+intermediateFolder: '{0}\intermediate'
+# Interest rate calibration algorithm
+interestRateCalibrationAlgorithm: 'moments'
+# Fx rate calibration algorithm
+fxRateCalibrationAlgorithm: 'moments'
+# vol calibration algorithm
+volCalibrationAlgorithm: 'kalman'
+#correlation healing type
+corrHealType: 'Adjusted_cov' #Yes/No
+# keep cache
+keepCache: 'True'
+# data source 0
+dataSource0: '\\solon.prd\Files\P\Global\WGD\Dep 255242-Counterparty Exposure Modelling\Data\OfficialDataFromPVS'
+# The location of the historical interest rate files
+sourceDirIR: '{0}\zero.YYYYMMDD.EMEA\'
+# The name pattern for the interest rate files.
+# Each file name begins with 'zero.' followed by 8 digits of date (yyyymmdd) and ends with '.EMEA' 
+namePatternIR: 'zero\.([0-9]{8})\.EMEA'
+# The location of the historical interest rate files
+sourceDirIR: '{0}\zero.YYYYMMDD.EMEA\'
+# The name pattern for the interest rate files.
+# Each file name begins with 'zero.' followed by 8 digits of date (yyyymmdd) and ends with '.EMEA'
+namePatternIR: 'zero\.([0-9]{8})\.EMEA'
+# The location of the historical commodity rate files
+sourceDirCom: '{0}\oil.YYYYMMDD.EMEA\'
+# The name pattern for the commodity rate files.
+# Each file name begins with 'zero.' followed by 8 digits of date (yyyymmdd) and ends with '.EMEA'
+namePatternCom: 'oil\.([0-9]{8})\.EMEA'
+# The location of the historical exchange rate files
+sourceDirFX: '{0}\fx.YYYYMMDD.EMEA\'
+# The location of the historical exchange rate files metals
+sourceDirFXMetal: '{0}\fxmetal.USD.YYYYMMDD.EMEA\'
+# The name pattern for the exchange rate files.
+# Each file name begins with 'fx.' followed by 8 digits of date (yyyymmdd) and ends with '.EMEA' 
+namePatternFX: 'fx\.([0-9]{8})\.EMEA'
+# The name pattern for the exchange rate files metals.
+# Each file name begins with 'fxmetal.' followed by 8 digits of date (yyyymmdd) and ends with '.EMEA'
+namePatternFXMetal: 'fxmetal\.USD\.([0-9]{8})\.EMEA'
+# Trading mandae
+mandate:
+    -
+      type: InterestRate
+      historyLength: 1000
+      minHistoryLength: 500
+      tenors: all
+      maturities: na
+      strikes: na
+      calibrationTenors: tenors
+      calibrationMaturities: na
+      calibrationStrikes: na
+    -
+      type: FX
+      historyLength: 1000
+      minHistoryLength: 500
+      tenors: na
+      maturities: na
+      strikes: na
+      calibrationTenors: na
+      calibrationMaturities: na
+      calibrationStrikes: na
+    -
+      type: InterestRateVol
+      historyLength: 1000
+      minHistoryLength: 500
+      tenors: 1M, 3M, 6M
+      maturities: 1M - 360M
+      strikes: -0.05 - 0.05
+      calibrationTenors: tenors
+      calibrationMaturities: 1M, 3M, 6M, 12M, 24M, 36M, 48M, 60M, 72M, 84M, 96M, 108M, 120M, 180M, 240M, 300M, 360M
+      calibrationStrikes: -0.05:0.05:0.01
+    -
+      type: InterestYieldVol
+      historyLength: 1000
+      minHistoryLength: 500
+      tenors: all
+      maturities: 1M - 360M
+      strikes: -0.05 - 0.05
+      calibrationTenors: 12M, 24M, 36M, 48M, 60M, 120M, 180M, 240M, 360M, 480M, 600M
+      calibrationMaturities: 1M, 3M, 6M, 12M, 24M, 36M, 48M, 60M, 72M, 84M, 96M, 108M, 120M, 180M, 240M, 300M, 360M
+      calibrationStrikes: -0.05:0.05:0.01
+    -
+      type: FXVol
+      historyLength: 1000
+      minHistoryLength: 500
+      tenors: na
+      maturities: 1D - 120M
+      strikes: na
+      calibrationTenors: na
+      calibrationMaturities: 1D, 5D, 10D, 21D, 42D, 63D, 126D, 252D, 504D, 1260D, 2520D
+      calibrationStrikes: 0.8:1.2:0.1
+    -
+      type: Commodity
+      historyLength: 1000
+      minHistoryLength: 500
+      tenors: all
+      maturities: na
+      strikes: na
+      calibrationTenors: 1M:60M:1M
+      calibrationMaturities: na
+      calibrationStrikes: na
+    -
+      type: CommodityVol
+      historyLength: 1000
+      minHistoryLength: 500
+      tenors: na
+      maturities: 1M - 5Y
+      strikes: -0.5 - 0.05
+      calibrationTenors: na
+      calibrationMaturities: 1M:60M:1M
+      calibrationStrikes: 0.8:1.2:0.1
+
+#EXCEPTIONS (put in brackets to what instance it applies)
+    -
+      type: InterestRateVol/(CHF)
+      historyLength: 1000
+      minHistoryLength: 500
+      tenors: 1M, 3M, 6M
+      maturities: 1M - 5Y
+      strikes: -0.05 - 0.05
+      calibrationTenors: tenors
+      calibrationMaturities: 1M, 3M, 6M, 12M, 24M, 36M, 48M, 60M, 72M, 84M, 96M, 108M, 120M, 180M, 240M, 300M, 360M
+      calibrationStrikes: -0.05:0.05:0.01
+    -
+      type: InterestYieldVol/(CHF)
+      historyLength: 1000
+      minHistoryLength: 500
+      tenors: all
+      maturities: 1M - 5Y
+      strikes: -0.05 - 0.05
+      calibrationTenors: 12M, 24M, 36M, 48M, 60M, 120M, 180M, 240M, 360M, 480M, 600M
+      calibrationMaturities: 1M, 3M, 6M, 12M, 24M, 36M, 48M, 60M, 72M, 84M, 96M, 108M, 120M, 180M, 240M, 300M, 360M
+      calibrationStrikes: -0.05:0.05:0.01
+
+# More exceptions may follow
+
+# The description of source files for historical implied volatility data.
+sourceImpVol:
+    -
+        name: InterestRateVol
+        currencies:
+                   -
+                      currency: NOK
+                      sources:
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.rate.volatilities\ICAP\NOK'
+                                 patternATM: 'IRD_VOLS_DISPL_CF_NOK_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_CF_NOK_SABR*.csv'
+                   -
+                      currency: SEK
+                      sources:
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.rate.volatilities\ICAP\SEK'
+                                 patternATM: 'IRD_VOLS_DISPL_CF_SEK_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_CF_SEK_SABR*.csv'
+    -               
+        name: InterestYieldVol
+        currencies:
+                   -
+                      currency: NOK
+                      sources:
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.yield.volatilities\ICAP\NOK'
+                                 patternATM: 'IRD_VOLS_DISPL_SWPT_NOK_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_SWPT_NOK_SABR*.csv'
+                   -
+                      currency: SEK
+                      sources:
+                              -
+                                 sourceID: 'ICAP'
+                                 dir: '{0}\impVol\ir.yield.volatilities\ICAP\SEK'
+                                 patternATM: 'IRD_VOLS_DISPL_SWPT_SEK_ATM*.csv'
+                                 patternSABR: 'IRD_VOLS_DISPL_SWPT_SEK_SABR*.csv'
+    -
+        name: FXVol
+        currencyPairs: []
+                                 
+sourceTargetCalendar: 'TGT.cal'
+# Simulation date
+baseDate: '01Jun2018'
+# Simulation currency
+base_Currency: 'EUR'
+# Description of the market data file for Adaptiv Analytics
+description: ''
+# This must be set to Yes
+exclude_Deals_With_Missing_Market_Data: 'Yes'
+# Specifies the proxying rules file for Adaptiv Analytics
+proxying_Rules_File: ''
+# This must be set to 1
+script_Base_Scenario_Multiplier: '1'
+# What to do if the correlation matrix is not positive semidefinite
+correlations_Healing_Method: 'Eigenvalue_Raising'
+# Specifies the grouping rules file for Adaptiv Analytics
+# Grouping rules are part of proxying rules
+grouping_File: ''
+# Max used number of data points in the historical time series
+historyLength: 1000
+# Min used number of data points in the historical time series
+minHistoryLength: 500
+# Where to put the market data file for Adaptiv Analytics
+outputFile: 'MarketData20180601.dat_'
+majorCurrencies: 
+    -
+        name: EUR
+        calibrationCurve: BENCHMARK EURIBOR 6M CURVE
+        initialCurve: EUR DISCOUNT CURVE
+    -
+        name: USD
+        calibrationCurve: BENCHMARK USD LIBOR 3M CURVE
+        initialCurve: USD DISCOUNT CURVE
+    -
+        name: GBP
+        calibrationCurve: BENCHMARK GBP LIBOR 6M CURVE
+        initialCurve: GBP DISCOUNT CURVE
+    -
+        name: CHF
+        calibrationCurve: BENCHMARK CHF LIBOR 6M CURVE
+        initialCurve: CHF DISCOUNT CURVE
+    -
+        name: JPY
+        calibrationCurve: BENCHMARK JPY LIBOR 6M CURVE
+        initialCurve: JPY DISCOUNT CURVE
+    -
+        name: NOK
+        calibrationCurve: BENCHMARK NOK OIBOR 6M CURVE
+        initialCurve: NOK DISCOUNT CURVE
+    -
+        name: SEK
+        calibrationCurve: SEK STIBOR 6M CURVE
+        initialCurve: SEK DISCOUNT CURVE
+    -
+        name: SGD
+        calibrationCurve: SGD SIBOR 6M L
+        initialCurve: BENCHMARK SGD FX CURVE
+    -
+        name: TWD
+        calibrationCurve: BENCHMARK TWD FX CURVE
+        initialCurve: BENCHMARK TWD FX CURVE
+
+majorCommodities:
+    -
+        name: WTI NYMEX
+        calibrationCurve: WTI NYMEX
+        type: energy
+
+samples:
+    -
+        name: BULLET_NYB
+        offset: 0
+        calendar: NYB
+    -
+        name: BULLET_LNB
+        offset: 0
+        calendar: NYB
+    -
+        name: DAILY_NYB
+        offset: 0
+        calendar: NYB
+    -
+        name: DAILY_LNB
+        offset: 0
+        calendar: NYB
+
+fxPrincipalCurrencies: [ USD, GBP, JPY ]
+fxAdditionalFactors: 3
+# The list of products with implied volatility for which model calibration will be performed. If there is an entry for a certain product in this list, the same product has to appear above under sourceImpVol.
+impliedVolProducts: []
+impliedVols: []
+impliedCommodityVols: []
+
+impliedFXVols: []
+
+spreadCurves: []
+
+otherCurrencies: []
+
+fxRates:
+    - USD.EUR
+    - GBP.EUR
+    - JPY.EUR
+    - CHF.EUR
+    - NOK.EUR
+    - SEK.EUR
+
+#units
+units:
+  XAG:  Troy ounce
+  XAU:  Troy ounce
+#  XAL:  Troy ounce
+  XPD:  Troy ounce
+  XPT:  Troy ounce
+#  XRH:  Troy ounce
+#  XCU:  Ton
+#  XPB:  Ton
+#  XSN:  Ton
+#  XZN:  Ton
+
+valuationConfiguration: |
+    CFFloatingInterestListDeal=CFFloatingInterestListValuation,Convexity_Correction=Yes,Quanto_Correction=Yes,Faster_Averaging_Valuation=Yes,Use_Survival_Probability=No,Respect_Default=No,OIS_Cashflow_Group_Size=0
+    SwaptionDeal=SwaptionValuation,Forward_Start=No
+    ABNCapDeal=DealSkinValuation
+    ABNFloorDeal=DealSkinValuation
+    ABNNettingCollateralSet=ABNNettingCollateralSetValuation,Cash_Settlement_Risk=Received_Only,Forward_Looking_Closeout=Yes,Deal_Specific_Liquidation=No,Use_Optimal_Collateral=No,Value_On_Key_Call_Dates=No,Test_Inner_Settlement_Period_Dates=No
+    ABNSwapBasisDeal=DealSkinValuation
+    ABNSwapCurrencyDeal=DealSkinValuation
+    ABNSwapInterestDeal=DealSkinValuation
+    ABNSwaptionDeal=DealSkinValuation

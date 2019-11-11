@@ -1,0 +1,77 @@
+training_datasets:
+  -
+    name: 'br_dated'
+    start_position: 240
+  -
+    name: 'br_ice'
+    start_position: 0
+  -
+    name: 'f35_rot_fb'
+    start_position: 0
+  -
+    name: 'go01_rot_fb'
+    start_position: 0
+  -
+    name: 'hsfo380_sgp_fc'
+    start_position: 0
+  -
+    name: 'jk_rot_fb'
+    start_position: 0
+
+test_datasets:
+  -
+    name: 'wti_nymex'
+    start_position: 0
+
+ng_datasets:
+  - ngalgonquinctg
+  - nganrla
+#  - nganrok
+#  - ngchicagocg
+#  - ngcigrockies
+#  - ngcolgasapp
+#  - ngcolgulfla
+#  - ngcolgulfmain
+#  - ngdominionapp
+#  - ngegt
+#  - ngelpasoperm
+#  - ngelpasosju
+#  - ngfgtzone2
+#  - ngfgtzone3
+#  - nghoustonsc
+#  - nglconway
+#  - nglmtbelnontet
+#  - nglmtbeltet
+#  - ngmichconctg
+#  - ngngplmidco
+#  - ngngpltxok
+#  - ngngpltxsz
+#  - ngnngdemarc
+#  - ngnngventura
+#  - ngnorthwestca
+#  - ngnorthwestrm
+#  - ngoneok
+#  - ngpanhandle
+#  - ngpgectg
+#  - ngpgemalin
+#  - ngsocalbrdr
+#  - ngsocalcg
+#  - ngsonatla
+#  - ngsostartok
+#  - ngtcoleidy
+#  - ngtcoz1
+#  - ngtcoz2
+#  - ngtcoz3
+#  - ngtcoz4
+#  - ngtcoz6ny
+#  - ngtenn500
+#  - ngtenn800
+#  - ngtennz0
+#  - ngtetcoela
+#  - ngtetcom2
+#  - ngtetcom3
+#  - ngtetcostx
+#  - ngtetcowla
+#  - ngtrunklinela
+#  - ngtxgasz1
+#  - ngwaha
